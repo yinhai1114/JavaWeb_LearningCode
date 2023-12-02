@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        function f1(){
+            var res = 0;
+            for(var i = 0; i < arguments.length ;i++){
+                //过滤掉不是number的数据
+                if(typeof (arguments[i]) == "number"){
+                    res += arguments[i];
+                }
+            }
+            return res;
+        }
+        alert(f1(0,1,2,3,4,"AVCASD"));
+    </script>
+</head>
+<body>
+
+</body>
+</html>
