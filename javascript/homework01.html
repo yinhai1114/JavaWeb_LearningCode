@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>注册用户</title>
+    <script type="text/javascript">
+        window.onload = function (){//在页面加载完成后执行
+            var form = document.getElementById("form");//获取表单的dom对象
+            form.onsubmit = function (){//通过dom对象获得事件
+                if(!(form.username.value.length >= 4 && form.username.value.length <= 6)){
+                    alert("用户名长度应当在4-6之间");
+                    return false;
+                }
+                if(form.pwd1.value.length != 6){
+                    alert("密码长度应当为6位");
+                    return false;
+                }
+                if(form.pwd2.value.length != 6){
+                    alert("确认密码长度应当为6位");
+                    return false;
+                }
+                if(form.pwd1.value != form.pwd2.value){
+                    alert("输入的两次密码不相同");
+                    return false;
+                }
+                //使用正则表达式
+                //1.在JS中转义符使用一个\即可
+                var emailPatten = /^[\w]+@([a-zA-Z]+\.)+[a-zA-Z]+$/;
+                if(!(emailPatten.test(form.email.value))){
+                    alert("电子邮件格式不正确");
+                    return false;
+                }
+                return true;
+            }
+
+
+        }
+    </script>
+</head>
+<body>
+<h1> 注册用户 </h1>
+<form action="ok.html" id="form">
+    用户名: <input type="text" id="username" name="username"/><br/>
+    密 码: <input type="password" id="pwd1" name="pwd1"/><br/>
+    确认密码: <input type="password" id="pwd2" name="pwd2"/><br/>
+    电子邮箱: <input type="email" id="email" name="pwd"/><br/>
+    <input type="submit" value="注册用户"/>
+</form>
+</body>
+</html>
