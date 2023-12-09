@@ -21,4 +21,23 @@
         <servlet-name>HelloServlet</servlet-name>
         <url-pattern>/helloServlet</url-pattern>
     </servlet-mapping>
+
+    <!--配置HiServlet-->
+    <servlet>
+        <servlet-name>HiServlet</servlet-name>
+        <servlet-class>com.yinhai.servlet.HiServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>HiServlet</servlet-name>
+        <url-pattern>/hiServlet</url-pattern>
+    </servlet-mapping>
+    <!--对OkServlet进行配置-->
+    <servlet>
+        <servlet-name>OkServlet</servlet-name>
+        <servlet-class>com.yinhai.servlet.OkServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>OkServlet</servlet-name>
+        <url-pattern>/okServlet</url-pattern>
+    </servlet-mapping>
 </web-app>
