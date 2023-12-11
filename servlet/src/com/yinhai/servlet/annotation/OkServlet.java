@@ -20,7 +20,7 @@ import java.lang.annotation.*;
         * @Target({ElementType.TYPE})
  * @Retention(RetentionPolicy.RUNTIME)
  * @Documented => 在javadoc工具生成文档有记录
-        * public @interface WebServlet {
+        * public @interface We bServlet {
  *     String name() default "";
  *
          *     String[] value() default {};
@@ -49,7 +49,7 @@ import java.lang.annotation.*;
         *             <param-value></param-value>
         *         </init-param>
         *  9. 注解方式开发Servlet和 web.xml配置servlet 流程机制是一样
-        *  10. /ok1/aa /ok1/bb /ok1/cc /ok1/aa/bb/cc /ok2
+        *  10. /ok1/aa /ok1/bb /ok1/cc /ok1/aa/bb/cc /ok2 //精准匹配
         *  11. *.action 这时 zs.action ls.action
         *  12. http://localhost:8080/servlet/register.html
         */
