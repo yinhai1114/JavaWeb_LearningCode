@@ -36,8 +36,45 @@
         <servlet-name>OkServlet</servlet-name>
         <servlet-class>com.yinhai.servlet.OkServlet</servlet-class>
     </servlet>
+
     <servlet-mapping>
         <servlet-name>OkServlet</servlet-name>
         <url-pattern>/okServlet</url-pattern>
     </servlet-mapping>
+
+    <!--配置DBServlet-->
+    <servlet>
+        <servlet-name>DBServlet</servlet-name>
+        <servlet-class>com.yinhai.servlet.DBServlet</servlet-class>
+        <!--配置信息,而不是硬编码到程序-->
+        <init-param>
+            <param-name>username</param-name>
+            <param-value>yinhai</param-value>
+        </init-param>
+        <init-param>
+            <param-name>pwd</param-name>
+            <param-value>123456</param-value>
+        </init-param>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DBServlet</servlet-name>
+        <url-pattern>/db</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>ServletContext_</servlet-name>
+        <servlet-class>com.yinhai.servlet.servletcontext_.ServletContext_</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ServletContext_</servlet-name>
+        <url-pattern>/servletContext_</url-pattern>
+    </servlet-mapping>
+    <!--配置整个网站的信息-->
+    <context-param>
+        <param-name>website</param-name>
+        <param-value>http://www.yinhai.net</param-value>
+    </context-param>
+    <context-param>
+        <param-name>company</param-name>
+        <param-value>yinhai</param-value>
+    </context-param>
 </web-app>
