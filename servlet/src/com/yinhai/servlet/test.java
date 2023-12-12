@@ -14,9 +14,10 @@ public class test {
         String regStr = "\\(.+\\)";
         Pattern pattern = Pattern.compile(regStr);
         Matcher matcher = pattern.matcher(s);
-        while (matcher.find()){
-            System.out.println(matcher.group(0));
-        }
+        matcher.find();
+        String group = matcher.group(0);
+        String s1 = group.replaceAll("\\(|\\)", "");
+        System.out.println(s1);
 
     }
 }
