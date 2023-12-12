@@ -1,4 +1,4 @@
-package com.yinhai.servlet.servletcontext_.request;
+package com.yinhai.servlet.request;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
