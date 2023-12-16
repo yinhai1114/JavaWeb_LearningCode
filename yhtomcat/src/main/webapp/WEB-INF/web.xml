@@ -4,4 +4,14 @@
 
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
+  <servlet>
+    <servlet-name>YhCalServlet</servlet-name>
+    <!--因为这是我们自己的servlet，所以不识别，没有关系-->
+
+    <servlet-class>com.yinhai.tomcat.servlet.YhCalServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>YhCalServlet</servlet-name>
+    <url-pattern>/yhCalServlet</url-pattern>
+  </servlet-mapping>
 </web-app>
