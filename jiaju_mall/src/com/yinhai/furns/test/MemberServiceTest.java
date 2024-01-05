@@ -27,6 +27,7 @@ public class MemberServiceTest {
         boolean b = memberService.registerMember(member);
         if (b){
             System.out.println("注册成功");
+            JDBCUtilsByDruid.commit();
         }else{
             System.out.println("注册失败");
         }
