@@ -121,8 +121,9 @@
                                          ${msg}
                                      </span>
 
-                                    <form action="loginServlet" method="post">
+                                    <form action="memberServlet" method="post">
 <%--                                        提示错误信息--%>
+                                        <input type="hidden" name="action" value="login">
                                         <input type="text" name="user-name" value="${username}" placeholder="Username"/>
                                         <input type="password" name="user-password" placeholder="Password"/>
                                         <div class="button-box">
@@ -141,8 +142,11 @@
                             <div class="login-form-container">
                                 <div class="login-register-form">
                                     <span class="errorMsg"
-                                          style="float: right; font-weight: bold; font-size: 20pt; margin-left: 10px;"></span>
-                                    <form action="registerServlet" method="post">
+                                          style="float: right; font-weight: bold; font-size: 20pt; margin-left: 10px;">
+                                        ${msg}
+                                    </span>
+                                    <form action="memberServlet" method="post">
+                                        <input type="hidden" name="action" value="register">
                                         <input type="text" id="username" name="user-name" placeholder="Username"/>
                                         <input type="password" id="password" name="user-password" placeholder="输入密码"/>
                                         <input type="password" id="repwd" name="user-password" placeholder="确认密码"/>
