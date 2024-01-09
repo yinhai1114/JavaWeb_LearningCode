@@ -19,13 +19,13 @@ public interface FurnDAO {
      */
     public List<Furn> queryFurns();
 
-    // /**
-    //  * 将传入的Furn对象，保存到DB
-    //  *
-    //  * @param furn
-    //  * @return
-    //  */
-    // public int addFurn(Furn furn);
+    /**
+     * 将传入的Furn对象，保存到DB
+     *
+     * @param furn
+     * @return
+     */
+    public int addFurn(Furn furn);
     //
     // /**
     //  * 根据传入id, 删除DB中对应的家居
