@@ -22,7 +22,7 @@ public abstract class BasicServlet extends HttpServlet {
         //获取到action的值
         //老韩提示：如果我们使用了模板模式+反射+动态绑定，要满足action的value 和 方法名一致!!!
         String action = request.getParameter("action");
-        //System.out.println("action=" + action);
+        System.out.println("action=" + action);
 
         //使用反射,获取当前对象的方法
         //老韩解读
@@ -47,4 +47,9 @@ public abstract class BasicServlet extends HttpServlet {
 
     }
 
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        doPost(req,resp);
+    }
 }
