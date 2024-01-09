@@ -1,0 +1,23 @@
+package com.yinhai.furns.utils;
+
+import org.apache.commons.beanutils.BeanUtils;
+
+import java.util.Map;
+
+/**
+ * @author 银小海
+ * @version 1.0
+ * @email yinhai14@qq.com
+ */
+public class DataUtils {
+    //将方法，封装到静态方法，方便使用
+    public static <T> T copyParamToBean(Map value, T bean) {
+        try {
+            BeanUtils.populate(bean, value);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return bean;
+    }
+
+}
