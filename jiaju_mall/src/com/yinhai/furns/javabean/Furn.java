@@ -17,7 +17,7 @@ public class Furn {
     private Integer sales;
     private Integer stock;
     //表的字段是imgPath 而bean用的imgPath 如何解决
-    private String imgPath;
+    private String imgPath = "assets/images/product-image/default.jpg";
 
     public Furn(Integer id, String name, String maker, BigDecimal price, Integer sales, Integer stock, String imgPath) {
         this.id = id;
@@ -26,7 +26,9 @@ public class Furn {
         this.price = price;
         this.sales = sales;
         this.stock = stock;
-        this.imgPath = imgPath;
+        if(!(null == imgPath || "".equals(imgPath))){
+            this.imgPath = imgPath;
+        }
     }
 
     public Furn() {
