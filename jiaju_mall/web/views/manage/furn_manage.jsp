@@ -21,7 +21,6 @@
                 //获取到要删除的家居的名字
                 var furnName = $(this).parent().parent().find("td:eq(1)").text();
 
-                //老韩解读
                 //1. confirm方法会弹出一个确认窗口
                 //2. 点击确定，返回true
                 //3. 点击取消，返回false
@@ -115,7 +114,7 @@
                             </thead>
                             <tbody>
                             <%--取出furns集合，循环显示 getItems()--%>
-                            <c:forEach items="${requestScope.furns}" var="furn">
+                            <c:forEach items="${requestScope.page.items}" var="furn">
                                 <tr>
                                     <td class="product-thumbnail">
                                         <a href="#"><img class="img-responsive ml-3" src="${furn.imgPath}"
@@ -129,14 +128,15 @@
                                     </td>
                                     <td class="product-quantity">
                                             ${furn.stock}
-<%--                                    </td>--%>
-<%--                                    <td class="product-remove">--%>
-<%--                                        <a href="manage/furnServlet?action=showFurn&id=${furn.id}&pageNo=${requestScope.page.pageNo}"><i--%>
-<%--                                                class="icon-pencil"></i></a>--%>
-<%--                                        <a class="deleteCss"--%>
-<%--                                           href="manage/furnServlet?action=del&id=${furn.id}&pageNo=${requestScope.page.pageNo}"><i--%>
-<%--                                                class="icon-close"></i></a>--%>
-<%--                                    </td>--%>
+                                    </td>
+                                    <td class="product-remove">
+                                        <a href="manage/furnServlet?action=showFurn&id=${furn.id}&pageNo=${requestScope.page.pageNo}"><i
+                                                class="icon-pencil"></i></a>
+
+                                            <a class="deleteCss"
+                                               href="manage/furnServlet?action=del&id=${furn.id}&pageNo=${requestScope.page.pageNo}"><i
+                                                    class="icon-close"></i></a>
+                                    </td>
                                 </tr>
                             </c:forEach>
                             </tbody>
@@ -174,7 +174,7 @@
                     <%--如果总页数<=5, 就全部显示--%>
                     <c:when test="${requestScope.page.pageTotalCount <=5 }">
                         <c:set var="begin" value="1"/>
-                        <c:set var="begin" value="${requestScope.page.pageTotalCount}"/>
+                        <c:set var="end" value="${requestScope.page.pageTotalCount}"/>
                     </c:when>
                     <%--如果总页数>5--%>
                     <c:when test="${requestScope.page.pageTotalCount > 5}">
@@ -206,8 +206,8 @@
                     <c:if test="${i != requestScope.page.pageNo}">
                         <li><a href="manage/furnServlet?action=page&pageNo=${i}">${i}</a></li>
                     </c:if>
-
                 </c:forEach>
+
                 <%--如果当前页 < 总页数 , 就显示下一页--%>
                 <c:if test="${requestScope.page.pageNo < requestScope.page.pageTotalCount}">
                     <li><a href="manage/furnServlet?action=page&pageNo=${requestScope.page.pageNo + 1}">下一页</a></li>
