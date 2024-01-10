@@ -2,6 +2,7 @@ package com.yinhai.furns.web;
 
 import com.yinhai.furns.dao.BasicDAO;
 import com.yinhai.furns.javabean.Furn;
+import com.yinhai.furns.javabean.Page;
 import com.yinhai.furns.service.FurnService;
 import com.yinhai.furns.service.impl.FurnServiceImpl;
 import com.yinhai.furns.utils.DataUtils;
@@ -21,9 +22,10 @@ import java.util.List;
  * @version 1.0
  * @email yinhai14@qq.com
  */
-@WebServlet(name = "FurnServlet",urlPatterns = "/manage/furnServlet")
+@WebServlet(name = "FurnServlet", urlPatterns = "/manage/furnServlet")
 public class FurnServlet extends BasicServlet {
     private FurnService furnService = new FurnServiceImpl();
+
     /**
      * 这里我们使用前面的模板设计模式+反射+动态绑定来的调用到list方法
      *
@@ -44,7 +46,8 @@ public class FurnServlet extends BasicServlet {
         req.getRequestDispatcher("/views/manage/furn_manage.jsp")
                 .forward(req, resp);
     }
-    protected  void add(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
+
+    protected void add(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //获取家居信息
         // String uname = request.getParameter("name");
         // String maker = request.getParameter("maker");
@@ -109,6 +112,60 @@ public class FurnServlet extends BasicServlet {
         //        .forward(request, response);
         //就会造成数据重复提交： 解决方案使用 重定向即可.
         //因为重定向实际是让浏览器重新发请求, 所以我们回送的url , 是一个完整url
-        response.sendRedirect(request.getContextPath() + "/manage/furnServlet?action=list");
+        // response.sendRedirect(request.getContextPath() + "/manage/furnServlet?action=list");
+        //以分页的方式显示
+        response.sendRedirect(request.getContextPath()
+                + "/manage/furnServlet?action=page&pageNo=" + request.getParameter("pageNo"));
     }
+
+    protected void del(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        int id = DataUtils.parseInt(request.getParameter("id"), 0);
+        System.out.println(furnService.deleteFurnById(id));
+
+        response.sendRedirect(request.getContextPath()
+                + "/manage/furnServlet?action=page&pageNo=" + request.getParameter("pageNo"));
+    }
+
+    protected void showFurn(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int id = DataUtils.parseInt(request.getParameter("id"), 0);
+        Furn furn = furnService.queryFurnById(id);
+        System.out.println(furn);
+        request.setAttribute("furn", furn);
+        //再把获取到的showPage再传回去
+        // request.setAttribute("pageNo",request.getParameter("pageNo"));
+        // 如果是在同一个作用域request内的请求是不需要再转发的 在下个页面可以用param.pageNo获取
+        //请求转发
+        request.getRequestDispatcher("/views/manage/furn_update.jsp").forward(request, response);
+    }
+
+    protected void update(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        Furn furn = DataUtils.copyParamToBean(request.getParameterMap(), new Furn());
+        System.out.println("update" + furn);
+        System.out.println(furnService.updateFurn(furn));
+        //请求重定向
+        // response.sendRedirect(request.getContextPath() + "/manage/furnServlet?action=list");
+        //这里考虑分页转发
+        System.out.println(request.getContextPath()
+                + "/manage/furnServlet?action=page&pageNo=" + request.getParameter("pageNo"));
+        response.sendRedirect(request.getContextPath()
+                + "/manage/furnServlet?action=page&pageNo=" + request.getParameter("pageNo"));
+    }
+    protected void page(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+        int pageNo = DataUtils.parseInt(req.getParameter("pageNo"), 1);
+        int pageSize = DataUtils.parseInt(req.getParameter("pageSize"), Page.PAGE_SIZE);
+
+        //调用service方法, 获取Page对象
+        Page<Furn> page = furnService.page(pageNo, pageSize);
+        if(page.getItems().size() == 0){
+            page = furnService.page(page.getPageTotalCount(), pageSize);
+        }
+        //将page放入到request域
+        req.setAttribute("page", page);
+        //请求转发到furn_manage.jsp
+        req.getRequestDispatcher("/views/manage/furn_manage.jsp")
+                .forward(req, resp);
+    }
+
+
 }
