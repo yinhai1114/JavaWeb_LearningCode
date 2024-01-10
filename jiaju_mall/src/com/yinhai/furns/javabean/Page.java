@@ -12,7 +12,7 @@ import java.util.List;
 public class Page<T> {
     //每页显示多少条记录可以在其他地方也用到 建议置为常量
     //ctrl + shift + u 切换大小写
-    public static final Integer PAGE_SIZE = 3;
+    public static final Integer PAGE_SIZE = 4;
 
     //表示显示当前页
     private  Integer pageNo;
