@@ -30,4 +30,15 @@ public class FurnDAOTEST {
                 ,100,10,"assets/images/product-image/3.jpg");
         System.out.println(furnDAO.addFurn(furn));
     }
+    @Test
+    public void getTotalRow(){
+        System.out.println(furnDAO.getTotalRow());
+    }
+    @Test
+    public void getPageItems(){
+        List<Furn> pageItems = furnDAO.getPageItems(0, 3);
+        for (Furn pageItem : pageItems) {
+            System.out.println(pageItem);
+        }
+    }
 }
